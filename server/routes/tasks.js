@@ -1,7 +1,6 @@
 'use strict';
 var router = require('express').Router();
 var serverController=require('../controllers/serverController');
-var knex = require('./db/knex')
 
 
 router.get('/tasks', serverController.getAlltasks);

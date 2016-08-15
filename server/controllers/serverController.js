@@ -44,7 +44,7 @@ function edittask (req, res, next){
     location:req.body.location,
     expiration_time:req.body.expiration_time
 
-  });
+  })
   .then(function(task){
     res.send(task);
   })
@@ -68,5 +68,5 @@ module.exports = {
     deletetask: deletetask,
     posttask: posttask,
     getAlltasks: getAlltasks,
-    edittask: edittask 
+    edittask: edittask
 };
