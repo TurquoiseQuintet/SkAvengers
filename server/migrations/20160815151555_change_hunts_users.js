@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.integer('hunts_id');
     table.integer('users_id');
+    table.integer('user_level');
   })
 };
 
