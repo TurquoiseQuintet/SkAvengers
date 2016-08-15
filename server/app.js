@@ -30,7 +30,7 @@ app.use('/users', users);
 app.use('/hunts', hunts);
 app.use('/tasks', tasks);
 // app.use('/', expressJwt({secret:process.env.SECRET}));
-app.use('/api', expressJwt({secret:process.env.SECRET}), api);
+// app.use('/api', expressJwt({secret:process.env.SECRET}), api);
 
 
 // catch 404 and forward to error handler
