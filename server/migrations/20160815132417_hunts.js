@@ -1,5 +1,4 @@
 'use strict';
-
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('hunts', function(table) {
     table.increments();

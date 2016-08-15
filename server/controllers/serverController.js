@@ -34,7 +34,7 @@ function posttask(req,res, next){
     expiration_time: req.body.expiration_time
   });
 }
-function edittask(req, res, next){
+function edittask (req, res, next){
   knex('tasks').where({id:req.body.id})
   .update({
     name:req.body.name,
@@ -53,12 +53,20 @@ function edittask(req, res, next){
   });
 }
 
+function getAlltasks (req, res, next) {
+ knex('tasks')
+ .then(function(data){
+   res.send(data);
+ })
+  .catch(function(err){
+    res.send(err);
+  });
+}
 
 module.exports = {
     gettask: gettask,
     deletetask: deletetask,
-    posttask: posttask
-
-
-
+    posttask: posttask,
+    getAlltasks: getAlltasks,
+    edittask: edittask 
 };
