@@ -11,8 +11,10 @@ require('dotenv').config();
 var app = express();
 var expressJwt=require('express-jwt');
 //decide if we need this
-var api=require('./routes/api');
-
+// var api=require('./routes/api');
+var users = require('./routes/users');
+var hunts = require('./routes/hunts');
+var tasks = require('./routes/tasks');
 app.use(cors());
 
 app.use(logger('dev'));
@@ -23,8 +25,10 @@ app.use(function(req, res, next){
   console.log(req.url, req.method);
   next();
 });
-app.use('/', root);
-
+// app.use('/', root);
+app.use('/users', users);
+app.use('/hunts', hunts);
+app.use('/tasks', tasks);
 // app.use('/', expressJwt({secret:process.env.SECRET}));
 app.use('/api', expressJwt({secret:process.env.SECRET}), api);
 
