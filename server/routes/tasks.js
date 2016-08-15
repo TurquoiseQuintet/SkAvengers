@@ -17,18 +17,6 @@ router.post('/', function(req, res, next){
 
 router.get('/:task_id', serverController.gettask);
 
-router.post('/user/:_task_id', );
-=======
-router.get('/:task_id', function(req, res, next){
-  knex('tasks').where('id', req.body.task_id)
-  .then(function(data) {
-    res.json(data);
-  })
-  .catch(function(err) {
-    console.log(err);
-  });
-  //view a specific task
-});
 
 router.post('/user/:task_id', function(req, res, next){
   knex('tasks').where('id', req.params.task_id)
@@ -39,19 +27,12 @@ router.post('/user/:task_id', function(req, res, next){
     console.log(err);
   });
 });
->>>>>>> 5be435c6ad9e49c4035c96c9a44260efde2e5540
 
-router.post('/admin/:task_id', serverController.posttask){
-  //admin submit task as complete or not
-});
+router.post('/admin/:task_id', serverController.posttask)
 
-<<<<<<< HEAD
+
 router.delete('//:task_id', serverController.deletetask);
-=======
-router.delete('/:task_id', function(req, res, next){
-  //as an admin, delete specific task
-});
->>>>>>> 5be435c6ad9e49c4035c96c9a44260efde2e5540
+
 
 router.put('/admin/:task_id', serverController.edittask);
 
