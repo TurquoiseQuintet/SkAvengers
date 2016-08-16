@@ -5,7 +5,9 @@ var hashing = require('./hash');
 var bcrypt = require('bcrypt');
 
 function addUser(req, res, next){
+
   hashing(req.body.password).then(function(result) {
+    console.log(req.body);
              knex('users').insert({
                 username: req.body.username,
                 email: req.body.email,
@@ -18,7 +20,7 @@ function addUser(req, res, next){
             })
             .catch(function(err){
               console.log(err);
-              res.json({err: err});
+              res.json({err: "boo"});
             });
       })
       .then(function(data){
