@@ -60,7 +60,7 @@ if (app.get('env') === 'development') {
   });
 }
 
-//comment
+var variable = 0;
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
