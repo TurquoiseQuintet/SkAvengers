@@ -35,14 +35,16 @@ exports.seed = function(knex, Promise) {
           id: 1,
           huntMaster_id: 1,
           name: 'Swimming Pool',
-          expiration: '2016-01-01T08:30'
+          expiration: '2016-01-01T08:30',
+          xp_to_level_up: 100
         }),
 
         knex('hunts_users').insert({
           id: 1,
           hunts_id: 1,
           users_id: 1,
-          user_level: 1
+          user_level: 1,
+          experience: 0
         }),
 
         knex('users_tasks').insert({
@@ -79,14 +81,16 @@ exports.seed = function(knex, Promise) {
           id: 2,
           huntMaster_id: 2,
           name: 'Park',
-          expiration: '2016-08-10T22:50'
+          expiration: '2016-08-10T22:50',
+          xp_to_level_up: 100
         }),
 
         knex('hunts_users').insert({
           id: 2,
           hunts_id: 2,
           users_id: 2,
-          user_level: 1
+          user_level: 1,
+          experience: 0
         }),
 
         knex('users_tasks').insert({
@@ -123,14 +127,16 @@ exports.seed = function(knex, Promise) {
           id: 3,
           huntMaster_id: 3,
           name: 'House Chores',
-          expiration: '2016-09-11T21:45'
+          expiration: '2016-09-11T21:45',
+          xp_to_level_up: 100
         }),
 
         knex('hunts_users').insert({
           id: 3,
           hunts_id: 3,
           users_id: 3,
-          user_level: 1
+          user_level: 1,
+          experience: 0
         }),
 
         knex('users_tasks').insert({

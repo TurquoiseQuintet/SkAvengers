@@ -15,7 +15,8 @@ var expressJwt=require('express-jwt');
 var users = require('./routes/users');
 var hunts = require('./routes/hunts');
 var tasks = require('./routes/tasks');
-var auth =require('./routes/auth');
+var auth = require('./routes/auth');
+var submit = require('./routes/submit');
 app.use(cors());
 
 app.use(logger('dev'));
@@ -30,6 +31,7 @@ app.use('/', root);
 app.use('/users', users);
 app.use('/hunts', hunts);
 app.use('/tasks', tasks);
+app.use('/submit', submit);
 // app.use('/', expressJwt({secret:process.env.SECRET}));
 
 // app.use('/api', expressJwt({secret:process.env.SECRET}), api);

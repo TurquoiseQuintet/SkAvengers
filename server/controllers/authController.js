@@ -33,7 +33,6 @@ function checklogin (req, res, next){
         var token =jwt.sign(profile, process.env.SECRET);
         res.status(200).json({
           token:token
-          // id: result.id
         });
       }
         else{
