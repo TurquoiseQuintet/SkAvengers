@@ -32,14 +32,16 @@ function addUser(req, res, next){
     }
 
 function checklogin (req, res, next){
-  console.log(req.body);
+  console.log(req.body.email);
   knex('users')
   .where({
-    user:req.body.user
+    email:req.body.email
   })
   .then(function(data){
+    console.log(data[0].password);
     if(data.length===1){
-      bcrypt.compare(req.body.password, data[0].password, function(err, result){
+      bcrypt.compare(req.body.password, data[0].hash, function(err, result){
+        console.log(err, result);
         if(result){
           var profile= {
             username: data[0].username,
