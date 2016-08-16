@@ -1,5 +1,5 @@
 'use strict';
-var jwt = require('jsonwebtoken');
+// var jwt = require('jsonwebtoken');
 var knex = require('../db/knex');
 var hashing = require('../../lib/hash');
 
@@ -34,7 +34,18 @@ function editUser(req, res, next){
   });
 }
 
+function getAllUsers(req, res, next){
+  knex('users')
+  .then(function(data){
+    res.send(data);
+  })
+  .catch(function(err){
+    res.send(err);
+  });
+}
+
 module.exports={
   deleteUser:deleteUser,
-  editUser: editUser
+  editUser: editUser,
+  getAllUsers: getAllUsers
 };
