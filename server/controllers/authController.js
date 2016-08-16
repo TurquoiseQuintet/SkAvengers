@@ -1,7 +1,11 @@
 'use strict';
 var jwt = require('jsonwebtoken');
 var knex = require('../db/knex');
+<<<<<<< HEAD
 // var hashing = require('../../lib/hash');
+=======
+var hashing = require('./hash');
+>>>>>>> 5dd05a4964f15b91f889794d0c8b435d9234acf6
 var bcrypt = require('bcrypt');
 
 function addUser(req, res, next){
