@@ -5,3 +5,5 @@ var authController=require('../controllers/authController');
 
 router.post('/', authController.addUser);
 router.post('/auth', authController.checklogin);
+
+module.exports = router;
