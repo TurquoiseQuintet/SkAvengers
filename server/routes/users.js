@@ -1,13 +1,9 @@
 'use strict';
 var router = require('express').Router();
+var authController=require('../controllers/authController');
+router.post('/', authController.addUser);
 
-router.post('/', function(req, res, next){
-  //create user
-});
-
-router.post('/auth', function(req, res, next){
-  //authenticate user and login
-});
+router.post('/auth', authController.checklogin);
 
 router.get('/', function(req, res, next){
   //get all users
