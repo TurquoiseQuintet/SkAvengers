@@ -1,6 +1,6 @@
 'use strict';
 var router = require('express').Router();
-var serverController=require('../controllers/serverController');
+var serverController=require('../controllers/taskController');
 
 
 router.get('/tasks', serverController.getAlltasks);
