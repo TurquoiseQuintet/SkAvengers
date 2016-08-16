@@ -4,9 +4,9 @@ var knex = require('../db/knex');
 function createhunt(req, res){
   //create new hunt
   var insertObj = {
-    huntMaster_id: 3,
+    huntMaster_id: req.user.id,
     name: req.body.name,
-    expiration: undefined
+    expiration: req.body.expiration
   };
   knex('hunts').insert(insertObj).returning('id')
   .then(function(data){
