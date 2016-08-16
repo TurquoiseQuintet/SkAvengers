@@ -25,7 +25,7 @@ app.use(function(req, res, next){
   console.log(req.url, req.method);
   next();
 });
-// app.use('/', root);
+app.use('/', root);
 app.use('/users', users);
 app.use('/hunts', hunts);
 app.use('/tasks', tasks);

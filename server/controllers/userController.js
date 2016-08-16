@@ -1,7 +1,7 @@
 'use strict';
 // var jwt = require('jsonwebtoken');
 var knex = require('../db/knex');
-var hashing = require('../../lib/hash');
+// var hashing = require('../../lib/hash');
 
 function deleteUser(req, res, next){
   knex('users').where({id:req.body.id}).delete()
