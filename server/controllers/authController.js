@@ -6,18 +6,26 @@ var bcrypt = require('bcrypt');
 
 function addUser(req, res, next){
   hashing(req.body.password).then(function(result) {
-            return knex('users').insert({
+             knex('users').insert({
                 username: req.body.username,
-                email:req.body.email,
+                email: req.body.email,
                 hash: result,
-                avatar:req.body.avatar
+                avatar: req.body.avatar
+            })
+            .then(function(data){
+              console.log(data);
+              res.json({"test": data});
+            })
+            .catch(function(err){
+              console.log(err);
+              res.json({err: err});
             });
       })
       .then(function(data){
-        res.send(data);
+        res.json({"success":"Success"});
       })
       .catch(function(err){
-        res.send(err);
+        res.json({err:err});
       });
     }
 
