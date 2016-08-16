@@ -20,8 +20,8 @@ function addUser(req, res, next){
         res.send(err);
       });
     }
-}
-function checklogin(req, res, next){
+
+function checklogin (req, res, next){
   console.log(req.body);
   knex('users')
   .where({
@@ -60,5 +60,5 @@ function checklogin(req, res, next){
 
 module.exports = {
   addUser: addUser,
-  checkLogin:checkLogin
+  checklogin: checklogin
 };

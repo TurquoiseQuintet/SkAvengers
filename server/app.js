@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var logger = require('morgan');
 var cors= require('cors');
 
-var root = require('./routes/index');
+var root = require('./routes/auth');
 require('dotenv').config();
 
 var app = express();

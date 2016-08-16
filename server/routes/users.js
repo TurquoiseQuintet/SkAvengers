@@ -3,9 +3,7 @@ var router = require('express').Router();
 // var authController=require('../controllers/authController');
 var userController=require('../controllers/userController');
 
-router.get('/', function(req, res, next){
-  //get all users
-});
+router.get('/', userController.getAllUsers);
 
 router.delete('/:user_id', userController.deleteUser);
 
