@@ -3,10 +3,10 @@ var router = require('express').Router();
 // var authController=require('../controllers/authController');
 var userController=require('../controllers/userController');
 
-router.get('/', userController.getAllUsers);
+router.get('/users', userController.getAllUsers);
 
-router.delete('/:user_id', userController.deleteUser);
+router.delete('/users/:user_id', userController.deleteUser);
 
-router.put('/:user_id', userController.editUser);
+router.put('/users/:user_id', userController.editUser);
 
 module.exports = router;

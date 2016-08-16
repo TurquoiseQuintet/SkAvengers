@@ -15,25 +15,26 @@ var expressJwt=require('express-jwt');
 var users = require('./routes/users');
 var hunts = require('./routes/hunts');
 var tasks = require('./routes/tasks');
+var auth =require('./routes/auth');
 app.use(cors());
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
-app.use(function(req, res, next){
-  console.log(req.url, req.method);
-  next();
-});
-// app.use('/', root);
-app.use('/users', users);
-app.use('/hunts', hunts);
-app.use('/tasks', tasks);
+// app.use(function(req, res, next){
+//   console.log(req.url, req.method);
+//   next();
+// });
+app.use('/', root);
+// app.use('/auth', auth);
+// app.use('/hunts', hunts);
+// app.use('/tasks', tasks);
 // app.use('/', expressJwt({secret:process.env.SECRET}));
 
 // app.use('/api', expressJwt({secret:process.env.SECRET}), api);
 
-
+app.use('/users', expressJwt({secret:process.env.SECRET}), users);
 app.use('/hunts', expressJwt({secret:process.env.SECRET}), hunts);
 app.use('/tasks', expressJwt({secret:process.env.SECRET}), tasks );
 
