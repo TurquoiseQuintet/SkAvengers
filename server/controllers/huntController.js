@@ -1,12 +1,12 @@
 'use strict';
 var knex = require('../db/knex');
 
-function createhunt(req, res, next){
+function createhunt(req, res){
   //create new hunt
   var insertObj = {
-    huntmaster_id: req.user.id,
+    huntMaster_id: 3,
     name: req.body.name,
-    expiration_time: req.body.time
+    expiration: undefined
   };
   knex('hunts').insert(insertObj).returning('id')
   .then(function(data){
@@ -18,21 +18,18 @@ function createhunt(req, res, next){
   });
 }
 
-function gethunt (req, res, next){
+function gethunt (req, res){
   //view specific hunt
-  //I think I need a returning * but am not sure how to use those will get help in AM
-  knex('hunts').where({id:req.body.id})
-  .join('hunts_users').where({'hunts.id': 'hunts_users.hunts_id'})
-  .join('users').where({'hunts.users_id':'users.id'})
+  knex('hunts').where({id:req.params.hunt_id})
   .then(function(data){
-    res.send(data);
+    res.send(data[0]);
   })
   .catch(function(err){
     res.send(err);
   });
 }
 
-function getAllhunts (req, res, next){
+function getAllhunts (req, res){
  knex('hunts')
  .then(function(data){
    res.send(data);
@@ -42,31 +39,35 @@ function getAllhunts (req, res, next){
  });
 }
 
-function deleteHunt(req, res, next){
-  knex('hunts').where({id:req.params.id})
+function deleteHunt(req, res){
+  knex('hunts').where({id:req.params.hunt_id})
   .delete()
-  .then(
-    knex('hunts_users').where({hunts_id:req.params.id})
-    .delete()
-  )
-  .then(
-    knex('tasks').where({hunt_id:req.params.id})
-    .delete()
-  )
+  .then(function() {
+    return knex('hunts_users').where({hunts_id:req.params.hunt_id}).delete();
+  })
+  .then(function() {
+    knex('tasks').where({hunt_id:req.params.hunt_id}).delete();
+  })
+  .then(function() {
+    res.send('deleted a hunt');
+  })
   .catch(function(err){
     res.send(err);
   });
 }
 
-function editHunt (req, res, next){
+function editHunt (req, res){
   //as an admin, edit specific hunt
-  knex('hunts').where({id:req.params.id})
+  knex('hunts').where({id:req.params.hunt_id})
   .update({
     name: req.body.name,
     expiration_time: req.body.expiration_time
   })
-  .then(function(result){
-    res.send("updated", result);
+  .then(function(){
+    return knex('hunts').where('id', req.params.hunt_id)
+  })
+  .then(function(data) {
+    res.send(data);
   })
   .catch(function(err){
     res.send(err);

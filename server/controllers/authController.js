@@ -1,47 +1,31 @@
 'use strict';
 var jwt = require('jsonwebtoken');
 var knex = require('../db/knex');
-var hashing = require('./hash');
+var hash = require('./hash');
 var bcrypt = require('bcrypt');
 
 function addUser(req, res, next){
-
-  hashing(req.body.password).then(function(result) {
-    console.log(req.body);
-             knex('users').insert({
-                username: req.body.username,
-                email: req.body.email,
-                hash: result,
-                avatar: req.body.avatar
-            })
-            .then(function(data){
-              console.log(data);
-              res.json({"test": data});
-            })
-            .catch(function(err){
-              console.log(err);
-              res.json({err: "boo"});
-            });
-      })
-      .then(function(data){
-        res.json({"success":"Success"});
-      })
-      .catch(function(err){
-        res.json({err:err});
-      });
-    }
+  hash(req.body.password)
+  .then(function(result) {
+    return knex('users').insert({username: req.body.username, email:req.body.email, hash: result, avatar:req.body.avatar});
+  })
+  .then(function(data){
+    res.send(data);
+  })
+  .catch(function(err){
+    res.send(err);
+  });
+}
 
 function checklogin (req, res, next){
-  console.log(req.body.email);
+
   knex('users')
-  .where({
-    email:req.body.email
-  })
+  .where('username', req.body.username)
   .then(function(data){
     console.log(data[0].password);
     if(data.length===1){
       bcrypt.compare(req.body.password, data[0].hash, function(err, result){
-        console.log(err, result);
+      
         if(result){
           var profile= {
             username: data[0].username,
