@@ -1,13 +1,12 @@
 'use strict';
 var router = require('express').Router();
-var serverController=require('../controllers/taskController');
+var taskController=require('../controllers/taskController');
 
 
-router.get('/tasks', serverController.getAlltasks);
-router.get('/task/:task_id', serverController.gettask);
-router.post('/task', serverController.posttask);
-router.delete('/task/:task_id', serverController.deletetask);
-router.put('/task/:task_id', serverController.edittask);
-router.delete('/task/:task_id', serverController.deletetask);
+router.get('/', taskController.getAlltasks);
+router.get('/:task_id', taskController.gettask);
+router.post('/', taskController.posttask);
+router.delete('/:task_id', taskController.deletetask);
+router.put('/:task_id', taskController.edittask);
 
 module.exports = router;

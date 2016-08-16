@@ -1,35 +1,28 @@
 'use strict';
 var jwt = require('jsonwebtoken');
 var knex = require('../db/knex');
-var hashing = require('./hash');
+var hash = require('./hash');
 var bcrypt = require('bcrypt');
 
 function addUser(req, res, next){
-  hashing(req.body.password).then(function(result) {
-            return knex('users').insert({
-                username: req.body.username,
-                email:req.body.email,
-                hash: result,
-                avatar:req.body.avatar
-            });
-      })
-      .then(function(data){
-        res.send(data);
-      })
-      .catch(function(err){
-        res.send(err);
-      });
+  hash(req.body.password)
+  .then(function(result) {
+    return knex('users').insert({username: req.body.username, email:req.body.email, hash: result, avatar:req.body.avatar});
+  })
+  .then(function(data){
+    res.send(data);
+  })
+  .catch(function(err){
+    res.send(err);
+  });
     }
 
 function checklogin (req, res, next){
-  console.log(req.body);
   knex('users')
-  .where({
-    user:req.body.user
-  })
+  .where('username', req.body.username)
   .then(function(data){
     if(data.length===1){
-      bcrypt.compare(req.body.password, data[0].password, function(err, result){
+      bcrypt.compare(req.body.password, data[0].hash, function(err, result){
         if(result){
           var profile= {
             username: data[0].username,

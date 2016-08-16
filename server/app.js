@@ -27,16 +27,16 @@ app.use(bodyParser.urlencoded({ extended: true}));
 //   next();
 // });
 app.use('/', root);
-// app.use('/auth', auth);
-// app.use('/hunts', hunts);
-// app.use('/tasks', tasks);
+app.use('/users', users);
+app.use('/hunts', hunts);
+app.use('/tasks', tasks);
 // app.use('/', expressJwt({secret:process.env.SECRET}));
 
 // app.use('/api', expressJwt({secret:process.env.SECRET}), api);
 
-app.use('/users', expressJwt({secret:process.env.SECRET}), users);
-app.use('/hunts', expressJwt({secret:process.env.SECRET}), hunts);
-app.use('/tasks', expressJwt({secret:process.env.SECRET}), tasks );
+// app.use('/users', expressJwt({secret:process.env.SECRET}), users);
+// app.use('/hunts', expressJwt({secret:process.env.SECRET}), hunts);
+// app.use('/tasks', expressJwt({secret:process.env.SECRET}), tasks );
 
 
 // catch 404 and forward to error handler

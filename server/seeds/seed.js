@@ -16,7 +16,7 @@ exports.seed = function(knex, Promise) {
           id: 1,
           username: 'hank',
           email: 'hank1@gmail.com',
-          hash: '1111',
+          hash: '$2a$08$f7zWmIhBavhtGRvvBuyXdOzjEMrQKU0slLD1mMW4WPH5riIeSmdzW',
           avatar: 'http://cliparts.co/cliparts/6iy/ob4/6iyob4bBT.jpg'
         }),
 
@@ -60,7 +60,7 @@ exports.seed = function(knex, Promise) {
           id: 2,
           username: 'michelle',
           email: 'm23@gmail.com',
-          hash: '1111',
+          hash: '$2a$08$f7zWmIhBavhtGRvvBuyXdOzjEMrQKU0slLD1mMW4WPH5riIeSmdzW',
           avatar: 'https://clc2.uniservity.com/GroupDownloadAttachment.asp?GroupId=20216615&AttachmentID=1821834'
         }),
 
@@ -104,7 +104,7 @@ exports.seed = function(knex, Promise) {
           id: 3,
           username: 'tom',
           email: 'tomd@gmail.com',
-          hash: '1111',
+          hash: '$2a$08$f7zWmIhBavhtGRvvBuyXdOzjEMrQKU0slLD1mMW4WPH5riIeSmdzW',
           avatar: 'http://mitrarenov.com/cdn/images/testimoni/43056c4346f3a07ed17acb8ee6ae75db.jpg'
         }),
 
