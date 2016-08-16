@@ -16,7 +16,7 @@ function createhunt(req, res, next){
     res.status(500).json({err: err.message});
     console.log(err);
   });
-});
+}
 
 function gethunt (req, res, next){
   //view specific hunt
@@ -30,7 +30,7 @@ function gethunt (req, res, next){
   .catch(function(err){
     res.send(err);
   });
-});
+}
 
 function getAllhunts (req, res, next){
  knex('hunts')
