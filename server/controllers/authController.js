@@ -15,7 +15,7 @@ function addUser(req, res, next){
   .catch(function(err){
     res.send(err);
   });
-    }
+}
 
 function checklogin (req, res, next){
   knex('users')
