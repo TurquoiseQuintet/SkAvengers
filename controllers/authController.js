@@ -33,6 +33,7 @@ function checklogin (req, res, next){
       res.status(200).json({
         token:token
         });
+      res.send("logged in");
       }
       else {
         res.json(err);
