@@ -25,7 +25,7 @@ function checklogin (req, res, next){
     console.log(data[0].password);
     if(data.length===1){
       bcrypt.compare(req.body.password, data[0].hash, function(err, result){
-      
+
         if(result){
           var profile= {
             username: data[0].username,
@@ -38,17 +38,19 @@ function checklogin (req, res, next){
           token:token
         });
       }
-        else{
-          res.json("trouble loggin in");
-        }
-      });
-    }
-  })
-  .catch(function(err){
-    console.log(err);
-  });
+      else{
+        res.json("trouble loggin in");
+      }
+    });
+  }
+  else {
+    console.log("err here");
+  }
+})
+.catch(function(err){
+res.json("trouble loggin in");
+});
 }
-
 
 
 
