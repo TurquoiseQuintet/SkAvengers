@@ -10,6 +10,8 @@ require('dotenv').config();
 
 var app = express();
 var expressJwt=require('express-jwt');
+app.use(cors());
+
 //decide if we need this
 // var api=require('./routes/api');
 var users = require('./routes/users');
@@ -17,10 +19,6 @@ var hunts = require('./routes/hunts');
 var tasks = require('./routes/tasks');
 var submit = require('./routes/submit');
 var leaderboard = require('./routes/leaderboard');
-var corsOptions = {
-  origin: "*"
-};
-app.use(cors(corsOptions));
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
