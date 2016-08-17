@@ -15,10 +15,12 @@ var expressJwt=require('express-jwt');
 var users = require('./routes/users');
 var hunts = require('./routes/hunts');
 var tasks = require('./routes/tasks');
-var auth = require('./routes/auth');
 var submit = require('./routes/submit');
 var leaderboard = require('./routes/leaderboard');
-app.use(cors());
+var corsOptions = {
+  origin: "*"
+};
+app.use(cors(corsOptions));
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
