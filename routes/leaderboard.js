@@ -3,6 +3,6 @@
 var router = require('express').Router();
 var leaderboardController=require('../controllers/leaderboardController');
 
-router.get('/', leaderboardController.leaderboard);
+router.get('/:hunt_id', leaderboardController.leaderboard);
 
 module.exports = router;
