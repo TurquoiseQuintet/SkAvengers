@@ -21,28 +21,26 @@ function checklogin (req, res, next){
   knex('users')
   .where('username', req.body.username)
   .then(function(data){
-    if(data.length===1){
-      bcrypt.compare(req.body.password, data[0].hash, function(err, result){
-        if(result){
-          var profile= {
-            username: data[0].username,
-            id: data[0].id,
-            email:data[0].email,
-            avatar:data[0].avatar
-        };
-        var token =jwt.sign(profile, process.env.SECRET);
-        res.status(200).json({
-          token:token
+    bcrypt.compare(req.body.password, data[0].hash, function(err, result){
+      if(result){
+        var profile= {
+          username: data[0].username,
+          id: data[0].id,
+          email:data[0].email,
+          avatar:data[0].avatar
+      };
+      var token =jwt.sign(profile, process.env.SECRET);
+      res.status(200).json({
+        token:token
         });
       }
-        else{
-          res.json("trouble loggin in");
-        }
-      });
-    }
+      else {
+        res.json(err);
+      }
+    });
   })
   .catch(function(err){
-    console.log(err);
+    res.json(err);
   });
 }
 
