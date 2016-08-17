@@ -39,6 +39,33 @@ function getAllhunts (req, res){
  });
 }
 
+function master(req, res) {
+  knex('hunts').where('huntMaster_id', req.user.id)
+  .then(function(data) {
+    res.send(data);
+  })
+  .catch(function(err) {
+    res.send(err);
+  });
+}
+
+function myHunts(req, res) {
+  knex('hunts_users').where('users_id', req.user.id)
+  .then(function(data) {
+    var idarray = [];
+    for (var i = 0; i < data.length; i++) {
+      idarray.push(data[i].id);
+    }
+    return knex('hunts').whereIn('id', idarray);
+  })
+  .then(function(data) {
+    res.send(data);
+  })
+  .catch(function(err) {
+    res.send(err);
+  });
+}
+
 function deleteHunt(req, res){
   knex('hunts').where({id:req.params.hunt_id})
   .delete()
@@ -79,5 +106,7 @@ module.exports={
   gethunt: gethunt,
   getAllhunts: getAllhunts,
   deleteHunt: deleteHunt,
-  editHunt: editHunt
+  editHunt: editHunt,
+  myHunts: myHunts,
+  master: master
 };
