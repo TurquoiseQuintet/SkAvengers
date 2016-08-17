@@ -1,7 +1,7 @@
 'use strict';
 var knex = require('../db/knex');
 
-router.get('/:hunt_id', function(req, res) {
+function leaderboard(req, res) {
   knex('hunts_users').where('hunts_id', req.params.hunt_id)
   .then(function(data) {
     data = data.sort(function(a,b) {
@@ -15,7 +15,8 @@ router.get('/:hunt_id', function(req, res) {
   .catch(function(err) {
     console.log(err);
   });
-});
+};
 
 module.exports={
+  leaderboard: leaderboard
 };

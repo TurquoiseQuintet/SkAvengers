@@ -17,7 +17,7 @@ var hunts = require('./routes/hunts');
 var tasks = require('./routes/tasks');
 var auth = require('./routes/auth');
 var submit = require('./routes/submit');
-var leaderboard = require('./leaderboard');
+var leaderboard = require('./routes/leaderboard');
 app.use(cors());
 
 app.use(logger('dev'));
