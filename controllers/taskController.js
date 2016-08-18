@@ -68,15 +68,24 @@ function getAlltasks(req, res) {
 
 function getTasksForHunt(req, res){
   var tasks;
-  knex('tasks').where('hunt_id', req.params.hunt_id)
+  var number;
+  var hunt;
+  var experience;
+  knex('tasks').join('users_tasks', 'users_tasks.tasks_id', '=', 'tasks.id').where('hunt_id', req.params.hunt_id)
   .then(function(data){
     tasks = data;
+    hunt = data[0].hunt_id;
     return knex('users').join('hunts', 'huntMaster_id', '=', 'users.id').where('hunts.id', data[0].hunt_id);
-
   })
   .then(function(data){
-    res.send({tasks: tasks, huntMasterNumber: data[0].phone_number});
+    number = data[0].phone_number;
+    return knex('hunts_users').where('hunts_id', hunt).where('users_id', req.user.id);
   })
+  .then(function(data){
+    experience = data[0].experience;
+    res.send({tasks: tasks, huntMasterNumber: number, experience: experience});
+  })
+
   .catch(function(err){
     res.send(err);
   });
