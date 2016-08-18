@@ -32,11 +32,6 @@ function submit(req, res) {
     return knex('hunts_users').where('hunts_id', hunt.id).where('users_id', user.id).update({experience: (parseInt(hunt_user.experience) + parseInt(task.xp))});
   })
   .then(function() {
-    if (parseInt(hunt_user.experience) + parseInt(task.xp) - (parseInt(hunt_user.user_level) * parseInt(hunt.xp_to_level_up)) >= 0) {
-      return knex('hunts_users').where('hunts_id', hunt.id).where('users_id', user.id).update({user_level: parseInt(hunt_user.user_level) + 1});
-    }
-  })
-  .then(function() {
     if (task.unique) {
       return knex('users_tasks').where('tasks_id', task.id).update('completed', true)
     }
