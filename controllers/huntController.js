@@ -19,7 +19,13 @@ function createhunt(req, res){
 }
 
 function HuntsUsers(req, res) {
-  knex('hunts_users').where
+  knex('hunts_users').where('hunts_id', req.params.hunt_id)
+  .then(function(data) {
+    res.send(data);
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
 }
 
 function gethunt (req, res){
@@ -112,5 +118,6 @@ module.exports={
   deleteHunt: deleteHunt,
   editHunt: editHunt,
   myHunts: myHunts,
-  master: master
+  master: master,
+  HuntsUsers: HuntsUsers
 };
