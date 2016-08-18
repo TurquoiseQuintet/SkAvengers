@@ -39,13 +39,10 @@ app.use('/', root);
 //   console.log(req.url, req.method);
 //   next();
 // });
-<<<<<<< HEAD:server/app.js
-// app.use('/', root);
-// app.use('/auth', auth);
-=======
+
 app.use('/', root);
 // app.use('/users', users);
->>>>>>> 45bc81ff080af61dd826b8cdd66ba4bfa9323696:app.js
+
 // app.use('/hunts', hunts);
 // app.use('/tasks', tasks);
 app.use('/submit', submit);
