@@ -67,6 +67,17 @@ function getAlltasks(req, res) {
 }
 
 function getTasksForHunt(req, res){
+
+  knex('tasks').where('hunt_id', req.params.hunt_id)
+  .then(function(data){
+    res.send(data);
+  })
+
+  .catch(function(err){
+    res.send(err);
+  });
+}
+function getTasksForHuntForUser(req, res){
   var tasks;
   var number;
   var hunt;
@@ -108,5 +119,6 @@ module.exports = {
     getAlltasks: getAlltasks,
     edittask: edittask,
     getTasksForHunt: getTasksForHunt,
-    usersTasks: usersTasks
+    usersTasks: usersTasks,
+    getTasksForHuntForUser: getTasksForHuntForUser
 };
