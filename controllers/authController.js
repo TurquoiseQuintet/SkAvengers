@@ -4,17 +4,32 @@ var knex = require('../db/knex');
 var hash = require('./hash');
 var bcrypt = require('bcrypt');
 
-function addUser(req, res, next){
-  hash(req.body.password)
-  .then(function(result) {
-    return knex('users').insert({username: req.body.username, email:req.body.email, hash: result, avatar:req.body.avatar});
-  })
-  .then(function(data){
-    res.send(data);
-  })
-  .catch(function(err){
-    res.send(err);
-  });
+function addUser(req, res, next) {
+    hash(req.body.password)
+        .then(function(result) {
+            return knex('users').insert({
+                username: req.body.username,
+                email: req.body.email,
+                hash: result,
+                avatar: req.body.avatar
+            });
+        })
+        .then(function(data) {
+          var profile = {
+              data:data.id,
+              username: data.username,
+              email: data.email,
+              avatar: data.avatar
+          };
+          var token = jwt.sign(profile, process.env.SECRET, {expiresIn: 432000});
+          res.status(200).json({
+              token: token
+          });
+            res.send(data);
+        })
+        .catch(function(err) {
+            res.send(err);
+        });
 }
 
 function checklogin (req, res, next){
@@ -47,8 +62,7 @@ function checklogin (req, res, next){
 
 
 
-
 module.exports = {
-  addUser: addUser,
-  checklogin: checklogin
+    addUser: addUser,
+    checklogin: checklogin
 };
