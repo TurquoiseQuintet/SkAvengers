@@ -112,7 +112,7 @@ function editHunt (req, res){
   knex('hunts').where({id:req.params.hunt_id})
   .update({
     name: req.body.name,
-    expiration_time: req.body.expiration_time
+    expiration: req.body.expiration
   })
   .then(function(){
     return knex('hunts').where('id', req.params.hunt_id)
