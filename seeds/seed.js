@@ -26,7 +26,7 @@ exports.seed = function(knex, Promise) {
           hunt_id: 1,
           name: 'breaststroke down and back',
           xp: 50,
-          level_available: 1,
+          level_available: 100,
           unique: false,
           expiration: '2016-08-10T14:00'
         }),
@@ -36,14 +36,12 @@ exports.seed = function(knex, Promise) {
           huntMaster_id: 1,
           name: 'Swimming Pool',
           expiration: '2016-01-01T08:30',
-          xp_to_level_up: 100
         }),
 
         knex('hunts_users').insert({
           id: 1,
           hunts_id: 1,
           users_id: 1,
-          user_level: 1,
           experience: 0
         }),
 
@@ -72,7 +70,7 @@ exports.seed = function(knex, Promise) {
           hunt_id: 1,
           name: 'high dive',
           xp: 100,
-          level_available: 2,
+          level_available: 200,
           unique: false,
           expiration: '2016-08-10T14:00'
         }),
@@ -82,14 +80,12 @@ exports.seed = function(knex, Promise) {
           huntMaster_id: 2,
           name: 'Park',
           expiration: '2016-08-10T22:50',
-          xp_to_level_up: 100
         }),
 
         knex('hunts_users').insert({
           id: 2,
           hunts_id: 2,
           users_id: 2,
-          user_level: 1,
           experience: 0
         }),
 
@@ -118,7 +114,7 @@ exports.seed = function(knex, Promise) {
           hunt_id: 1,
           name: 'cannonball',
           xp: 200,
-          level_available: 3,
+          level_available: 300,
           unique: false,
           expiration: '2016-08-10T14:00'
         }),
@@ -128,14 +124,12 @@ exports.seed = function(knex, Promise) {
           huntMaster_id: 3,
           name: 'House Chores',
           expiration: '2016-09-11T21:45',
-          xp_to_level_up: 100
         }),
 
         knex('hunts_users').insert({
           id: 3,
           hunts_id: 3,
           users_id: 3,
-          user_level: 1,
           experience: 0
         }),
 
@@ -155,7 +149,7 @@ exports.seed = function(knex, Promise) {
           hunt_id: 2,
           name: 'find a note under the swingset',
           xp: 10,
-          level_available: 1,
+          level_available: 100,
           unique: false,
           expiration: '2016-12-25T24:00'
         })
@@ -169,7 +163,7 @@ exports.seed = function(knex, Promise) {
           hunt_id: 2,
           name: 'find a basket by a tree',
           xp: 20,
-          level_available: 1,
+          level_available: 100,
           unique: false,
           expiration: '2016-12-25T24:00'
         })
@@ -183,7 +177,7 @@ exports.seed = function(knex, Promise) {
           hunt_id: 2,
           name: 'find a toy at the top of the slide',
           xp: 30,
-          level_available: 1,
+          level_available: 100,
           unique: false,
           expiration: '2016-12-25T24:00'
         })
@@ -197,7 +191,7 @@ exports.seed = function(knex, Promise) {
           hunt_id: 3,
           name: 'mow the lawn',
           xp: 100,
-          level_available: 1,
+          level_available: 100,
           unique: true,
           expiration: '2016-08-21T17:00'
         })
@@ -211,7 +205,7 @@ exports.seed = function(knex, Promise) {
           hunt_id: 3,
           name: 'load the dishwasher',
           xp: 100,
-          level_available: 1,
+          level_available: 100,
           unique: true,
           expiration: '2016-08-21T17:00'
         })
@@ -225,7 +219,7 @@ exports.seed = function(knex, Promise) {
           hunt_id: 3,
           name: 'vacuum the house',
           xp: 100,
-          level_available: 1,
+          level_available: 100,
           unique: true,
           expiration: '2016-08-21T17:00'
         })
