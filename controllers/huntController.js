@@ -18,6 +18,10 @@ function createhunt(req, res){
   });
 }
 
+function HuntsUsers(req, res) {
+  knex('hunts_users').where
+}
+
 function gethunt (req, res){
   //view specific hunt
   knex('hunts').where({id:req.params.hunt_id})
