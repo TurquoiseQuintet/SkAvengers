@@ -25,7 +25,7 @@ function submit(req, res) {
     return knex('users_tasks').where('users_id', req.params.user_id).where('tasks_id', task.id).update({completed: true});
   })
   .then(function() {
-    console.log("call 4", data);
+    console.log("call 4");
     return knex('hunts').where('id', task.hunt_id);
   })
   .then(function(data) {
