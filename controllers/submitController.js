@@ -33,8 +33,11 @@ function submit(req, res) {
   })
   .then(function() {
     if (task.unique) {
-      return knex('users_tasks').where('tasks_id', task.id).update('completed', true)
+      return knex('users_tasks').where('tasks_id', task.id).update('completed', true);
     }
+  })
+  .then(function() {
+    console.log("complete");
   })
   .catch(function(err) {
     console.log(err);
