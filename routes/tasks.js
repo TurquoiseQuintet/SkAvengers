@@ -4,6 +4,7 @@ var taskController=require('../controllers/taskController');
 
 router.get('/users_tasks', taskController.usersTasks);
 router.get('/', taskController.getAlltasks);
+router.get('/hunter/hunt/:hunt_id', taskController.getTasksForHuntForUser);
 router.get('/hunt/:hunt_id', taskController.getTasksForHunt);
 router.get('/:task_id', taskController.gettask);
 router.post('/', taskController.posttask);
