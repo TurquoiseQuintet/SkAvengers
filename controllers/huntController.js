@@ -3,14 +3,27 @@ var knex = require('../db/knex');
 
 function createhunt(req, res){
   //create new hunt
+  var returningID;
   var insertObj = {
     huntMaster_id: req.user.id,
     name: req.body.name,
     expiration: req.body.expiration
   };
   knex('hunts').insert(insertObj).returning('id')
+  .then(function(id){
+    returningID = id;
+    var insertArray =[];
+    for(var i = 0; i < req.body.users; i++){
+      insertArray.push({
+        hunts_id: id,
+        users_id: req.body.users[i],
+        experience: 0
+      });
+    }
+    return knex('hunts_id').insert(insertArray);
+  })
   .then(function(data){
-    res.status(200).send(data);
+    res.status(200).send(returningID);
   })
   .catch(function(err){
     res.status(500).json({err: err.message});
