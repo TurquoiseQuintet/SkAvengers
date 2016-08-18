@@ -19,8 +19,20 @@ function createhunt(req, res){
 }
 
 function HuntsUsers(req, res) {
+  var users = [];
+  var experience = [];
   knex('hunts_users').where('hunts_id', req.params.hunt_id)
   .then(function(data) {
+    for (var i = 0; i < data.length; i++) {
+      users.push(data[i].users_id);
+      experience.push(data[i].experience);
+    }
+    return knex('users').whereIn('id', users)
+  })
+  .then(function(data) {
+    for (var i = 0; i < data.length; i++) {
+      data[i].experience = experience[i];
+    }
     res.send(data);
   })
   .catch(function(err) {
