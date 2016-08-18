@@ -82,11 +82,19 @@ function getTasksForHunt(req, res){
   });
 }
 
+function usersTasks(req, res) {
+  knex('users_tasks')
+  .then(function(data) {
+    res.send(data);
+  });
+}
+
 module.exports = {
     gettask: gettask,
     deletetask: deletetask,
     posttask: posttask,
     getAlltasks: getAlltasks,
     edittask: edittask,
-    getTasksForHunt: getTasksForHunt
+    getTasksForHunt: getTasksForHunt,
+    usersTasks: usersTasks
 };
