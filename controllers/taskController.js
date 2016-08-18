@@ -3,7 +3,13 @@ var jwt = require('jsonwebtoken');
 var knex = require('../db/knex');
 
 function deletetask(req, res) {
-    knex('tasks').where('id', req.params.task_id).delete();
+    knex('tasks').where('id', req.params.task_id).delete()
+    .then(function() {
+      res.send('success');
+    })
+    .catch(function(err) {
+      console.log(err);
+    })
 }
 
 function gettask(req, res) {
