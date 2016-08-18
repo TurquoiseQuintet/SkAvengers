@@ -7,10 +7,11 @@ var task;
 var hunt;
 var hunt_user;
 function submit(req, res) {
+  console.log("begin");
   knex('users').where('username', req.params.user_id)
   .then(function(data) {
     user = data[0];
-    return knex('users_tasks').where('users_id', user.id).where('tasks_id', req.params.task_id);
+    return knex('users_tasks').where('users_id', req.params.user_id).where('tasks_id', req.params.task_id);
   })
   .then(function(data) {
     user_task = data[0];
@@ -18,18 +19,18 @@ function submit(req, res) {
   })
   .then(function(data) {
     task = data[0];
-    return knex('users_tasks').where('users_id', user.id).where('tasks_id', task.id).update({completed: true});
+    return knex('users_tasks').where('users_id', req.params.user_id).where('tasks_id', task.id).update({completed: true});
   })
   .then(function() {
     return knex('hunts').where('id', task.hunt_id);
   })
   .then(function(data) {
     hunt = data[0];
-    return knex('hunts_users').where('hunts_id', hunt.id).where('users_id', user.id);
+    return knex('hunts_users').where('hunts_id', hunt.id).where('users_id', req.params.user_id);
   })
   .then(function(data) {
     hunt_user = data[0];
-    return knex('hunts_users').where('hunts_id', hunt.id).where('users_id', user.id).update({experience: (parseInt(hunt_user.experience) + parseInt(task.xp))});
+    return knex('hunts_users').where('hunts_id', hunt.id).where('users_id', req.params.user_id).update({experience: (parseInt(hunt_user.experience) + parseInt(task.xp))});
   })
   .then(function() {
     if (task.unique) {
