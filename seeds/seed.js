@@ -17,7 +17,8 @@ exports.seed = function(knex, Promise) {
           username: 'hank',
           email: 'hank1@gmail.com',
           hash: '$2a$08$f7zWmIhBavhtGRvvBuyXdOzjEMrQKU0slLD1mMW4WPH5riIeSmdzW',
-          avatar: 'http://cliparts.co/cliparts/6iy/ob4/6iyob4bBT.jpg'
+          avatar: 'http://cliparts.co/cliparts/6iy/ob4/6iyob4bBT.jpg',
+          phone_number: '7202192338'
         }),
 
         knex('tasks').insert({
@@ -27,7 +28,6 @@ exports.seed = function(knex, Promise) {
           xp: 50,
           level_available: 1,
           unique: false,
-          location: 'Greenwood Swimming Pool',
           expiration: '2016-08-10T14:00'
         }),
 
@@ -63,7 +63,8 @@ exports.seed = function(knex, Promise) {
           username: 'michelle',
           email: 'm23@gmail.com',
           hash: '$2a$08$f7zWmIhBavhtGRvvBuyXdOzjEMrQKU0slLD1mMW4WPH5riIeSmdzW',
-          avatar: 'https://clc2.uniservity.com/GroupDownloadAttachment.asp?GroupId=20216615&AttachmentID=1821834'
+          avatar: 'https://clc2.uniservity.com/GroupDownloadAttachment.asp?GroupId=20216615&AttachmentID=1821834',
+          phone_number: '8047545559'
         }),
 
         knex('tasks').insert({
@@ -73,7 +74,6 @@ exports.seed = function(knex, Promise) {
           xp: 100,
           level_available: 2,
           unique: false,
-          location: 'Greenwood Swimming Pool',
           expiration: '2016-08-10T14:00'
         }),
 
@@ -109,7 +109,8 @@ exports.seed = function(knex, Promise) {
           username: 'tom',
           email: 'tomd@gmail.com',
           hash: '$2a$08$f7zWmIhBavhtGRvvBuyXdOzjEMrQKU0slLD1mMW4WPH5riIeSmdzW',
-          avatar: 'http://mitrarenov.com/cdn/images/testimoni/43056c4346f3a07ed17acb8ee6ae75db.jpg'
+          avatar: 'http://mitrarenov.com/cdn/images/testimoni/43056c4346f3a07ed17acb8ee6ae75db.jpg',
+          phone_number:'8705801562'
         }),
 
         knex('tasks').insert({
@@ -119,7 +120,6 @@ exports.seed = function(knex, Promise) {
           xp: 200,
           level_available: 3,
           unique: false,
-          location: 'Greenwood Swimming Pool',
           expiration: '2016-08-10T14:00'
         }),
 
@@ -157,7 +157,6 @@ exports.seed = function(knex, Promise) {
           xp: 10,
           level_available: 1,
           unique: false,
-          location: 'City Park',
           expiration: '2016-12-25T24:00'
         })
       ])
@@ -172,7 +171,6 @@ exports.seed = function(knex, Promise) {
           xp: 20,
           level_available: 1,
           unique: false,
-          location: 'City Park',
           expiration: '2016-12-25T24:00'
         })
       ])
@@ -187,7 +185,6 @@ exports.seed = function(knex, Promise) {
           xp: 30,
           level_available: 1,
           unique: false,
-          location: 'City Park',
           expiration: '2016-12-25T24:00'
         })
       ])
@@ -202,7 +199,6 @@ exports.seed = function(knex, Promise) {
           xp: 100,
           level_available: 1,
           unique: true,
-          location: 'Wilson House',
           expiration: '2016-08-21T17:00'
         })
       ])
@@ -217,7 +213,6 @@ exports.seed = function(knex, Promise) {
           xp: 100,
           level_available: 1,
           unique: true,
-          location: 'Wilson House',
           expiration: '2016-08-21T17:00'
         })
       ])
@@ -232,7 +227,6 @@ exports.seed = function(knex, Promise) {
           xp: 100,
           level_available: 1,
           unique: true,
-          location: 'Wilson House',
           expiration: '2016-08-21T17:00'
         })
       ]);
