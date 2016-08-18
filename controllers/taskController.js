@@ -89,7 +89,7 @@ function usersTasks(req, res) {
   })
   .catch(function(err) {
     res.send(err);
-  })
+  });
 }
 
 module.exports = {
