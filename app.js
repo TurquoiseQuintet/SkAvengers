@@ -9,15 +9,17 @@ var root = require('./routes/auth');
 require('dotenv').config();
 
 var app = express();
-var expressJwt = require('express-jwt');
+var expressJwt=require('express-jwt');
+app.use(cors());
+
 //decide if we need this
 // var api=require('./routes/api');
 var users = require('./routes/users');
 var hunts = require('./routes/hunts');
 var tasks = require('./routes/tasks');
 var submit = require('./routes/submit');
+var leaderboard = require('./routes/leaderboard');
 
-app.use(cors());
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -33,23 +35,16 @@ app.use('/', root);
 // app.use('/users', users);
 // app.use('/hunts', hunts);
 // app.use('/tasks', tasks);
+app.use('/submit', submit);
+app.use('/leaderboard', leaderboard);
 // app.use('/submit', submit);
 // app.use('/', expressJwt({secret:process.env.SECRET}));
 
 // app.use('/api', expressJwt({secret:process.env.SECRET}), api);
 
-app.use('/users', expressJwt({
-    secret: process.env.SECRET
-}), users);
-app.use('/submit', expressJwt({
-    secret: process.env.SECRET
-}), submit);
-app.use('/hunts', expressJwt({
-    secret: process.env.SECRET
-}), hunts);
-app.use('/tasks', expressJwt({
-    secret: process.env.SECRET
-}), tasks);
+app.use('/users', expressJwt({secret:process.env.SECRET}), users);
+app.use('/hunts', expressJwt({secret:process.env.SECRET}), hunts);
+app.use('/tasks', expressJwt({secret:process.env.SECRET}), tasks );
 
 
 // catch 404 and forward to error handler
@@ -71,8 +66,8 @@ if (app.get('env') === 'development') {
     });
 }
 
-// production error handler
-// no stacktraces leaked to user
+
+
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
 });
