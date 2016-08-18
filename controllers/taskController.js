@@ -64,9 +64,15 @@ function getAlltasks(req, res) {
 }
 
 function getTasksForHunt(req, res){
+  var tasks;
   knex('tasks').where('hunt_id', req.params.hunt_id)
   .then(function(data){
-    res.send(data);
+    tasks = data;
+    return knex('users').join('hunts', 'huntMaster_id', '=', 'users.id').where('hunts.id', data[0].hunt_id);
+
+  })
+  .then(function(data){
+    res.send({tasks: tasks, huntMasterNumber: data[0].phone_number});
   })
   .catch(function(err){
     res.send(err);
