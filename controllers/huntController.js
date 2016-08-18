@@ -19,7 +19,10 @@ function createhunt(req, res){
 }
 
 function HuntsUsers(req, res) {
-  knex('hunts_users').where
+  knex('hunts_users').where('hunts_id', req.params.hunt_id)
+  .then(function(data) {
+    res.send(data);
+  });
 }
 
 function gethunt (req, res){
