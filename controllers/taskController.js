@@ -86,6 +86,9 @@ function usersTasks(req, res) {
   knex('users_tasks')
   .then(function(data) {
     res.send(data);
+  })
+  .catch(function(err) {
+    res.send(err);
   });
 }
 
