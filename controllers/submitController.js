@@ -34,7 +34,7 @@ function submit(req, res) {
     return knex('hunts_users').where('hunts_id', hunt.id).where('users_id', req.params.user_id);
   })
   .then(function(data) {
-    console.log("call 6");
+    console.log("call 6", data);
     hunt_user = data[0];
     return knex('hunts_users').where('hunts_id', hunt.id).where('users_id', req.params.user_id).update({experience: (parseInt(data[0].experience) + parseInt(task.xp))});
   })
