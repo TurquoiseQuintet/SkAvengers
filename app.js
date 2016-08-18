@@ -27,12 +27,25 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+app.use(function(req, res, next){
+  console.log(req.url, req.method);
+  next();
+});
+app.use('/', root);
+// app.use('/users', users);
+// app.use('/hunts', hunts);
+// app.use('/tasks', tasks);
 // app.use(function(req, res, next){
 //   console.log(req.url, req.method);
 //   next();
 // });
+<<<<<<< HEAD:server/app.js
+// app.use('/', root);
+// app.use('/auth', auth);
+=======
 app.use('/', root);
 // app.use('/users', users);
+>>>>>>> 45bc81ff080af61dd826b8cdd66ba4bfa9323696:app.js
 // app.use('/hunts', hunts);
 // app.use('/tasks', tasks);
 app.use('/submit', submit);
