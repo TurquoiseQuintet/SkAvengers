@@ -37,6 +37,7 @@ app.use('/', root);
 // app.use('/tasks', tasks);
 app.use('/submit', submit);
 app.use('/leaderboard', leaderboard);
+
 // app.use('/', expressJwt({secret:process.env.SECRET}));
 
 // app.use('/api', expressJwt({secret:process.env.SECRET}), api);

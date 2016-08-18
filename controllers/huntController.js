@@ -19,6 +19,7 @@ function createhunt(req, res){
 }
 
 function HuntsUsers(req, res) {
+
   var users = [];
   var experience = [];
   knex('hunts_users').where('hunts_id', req.params.hunt_id)
@@ -37,6 +38,7 @@ function HuntsUsers(req, res) {
   })
   .catch(function(err) {
     console.log(err);
+
   });
 }
 
