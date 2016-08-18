@@ -3,24 +3,29 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 var logger = require('morgan');
-var cors= require('cors');
+var cors = require('cors');
 
 var root = require('./routes/auth');
 require('dotenv').config();
 
 var app = express();
 var expressJwt=require('express-jwt');
+app.use(cors());
+
 //decide if we need this
 // var api=require('./routes/api');
 var users = require('./routes/users');
 var hunts = require('./routes/hunts');
 var tasks = require('./routes/tasks');
-var auth =require('./routes/auth');
-app.use(cors());
+var submit = require('./routes/submit');
+var leaderboard = require('./routes/leaderboard');
+
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 app.use(function(req, res, next){
   console.log(req.url, req.method);
@@ -34,10 +39,18 @@ app.use('/', root);
 //   console.log(req.url, req.method);
 //   next();
 // });
+<<<<<<< HEAD:server/app.js
 // app.use('/', root);
 // app.use('/auth', auth);
+=======
+app.use('/', root);
+// app.use('/users', users);
+>>>>>>> 45bc81ff080af61dd826b8cdd66ba4bfa9323696:app.js
 // app.use('/hunts', hunts);
 // app.use('/tasks', tasks);
+app.use('/submit', submit);
+app.use('/leaderboard', leaderboard);
+// app.use('/submit', submit);
 // app.use('/', expressJwt({secret:process.env.SECRET}));
 
 // app.use('/api', expressJwt({secret:process.env.SECRET}), api);
@@ -49,9 +62,9 @@ app.use('/tasks', expressJwt({secret:process.env.SECRET}), tasks );
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 
@@ -60,18 +73,18 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    console.log(err);
-    res.status(err.status || 500).json(err);
-  });
+    app.use(function(err, req, res, next) {
+        console.log(err);
+        res.status(err.status || 500).json(err);
+    });
 }
 
-// production error handler
-// no stacktraces leaked to user
+
+
 app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
+    res.status(err.status || 500);
 });
 var port = process.env.PORT || 3000;
-app.listen(port, function(){
-  console.log('Application is running on port:', port);
+app.listen(port, function() {
+    console.log('Application is running on port:', port);
 });

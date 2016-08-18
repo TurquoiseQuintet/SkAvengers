@@ -1,32 +1,22 @@
 'use strict';
-// var jwt = require('jsonwebtoken');
+var jwt = require('jsonwebtoken');
 var knex = require('../db/knex');
 
-function deletetask(req, res, next) {
-    knex('tasks').where({
-            id: req.body.id
-        }).delete()
-        .then(function(result) {
-            res.send("deleted", result);
-        })
-        .catch(function(err) {
-            res.send(err);
-        });
+function deletetask(req, res) {
+    knex('tasks').where('id', req.params.task_id).delete();
 }
 
-function gettask(req, res, next) {
-    knex('tasks').where({
-            id: req.body.id
-        })
+function gettask(req, res) {
+    knex('tasks').where('id', req.params.task_id)
         .then(function(task) {
-            res.send(task);
+            res.send(task[0]);
         })
         .catch(function(err) {
             res.send(err);
         });
 }
 
-function posttask(req, res, next) {
+function posttask(req, res) {
     knex('task').insert({
         hunt_id: req.body.hunt_id,
         name: req.body.name,
@@ -39,9 +29,9 @@ function posttask(req, res, next) {
     });
 }
 
-function edittask(req, res, next) {
+function edittask(req, res) {
     knex('tasks').where({
-            id: req.body.id
+            id: req.params.task_id
         })
         .update({
             name: req.body.name,
@@ -52,15 +42,18 @@ function edittask(req, res, next) {
             expiration_time: req.body.expiration_time
 
         })
-        .then(function(task) {
-            res.send(task);
+        .then(function() {
+          return knex('tasks').where('id', req.params.task_id);
+        })
+        .then(function(data) {
+          res.send(data);
         })
         .catch(function(err) {
             res.send(err);
         });
 }
 
-function getAlltasks(req, res, next) {
+function getAlltasks(req, res) {
     knex('tasks')
         .then(function(data) {
             res.send(data);
@@ -70,10 +63,21 @@ function getAlltasks(req, res, next) {
         });
 }
 
+function getTasksForHunt(req, res){
+  knex('tasks').where('hunt_id', req.params.hunt_id)
+  .then(function(data){
+    res.send(data);
+  })
+  .catch(function(err){
+    res.send(err);
+  });
+}
+
 module.exports = {
     gettask: gettask,
     deletetask: deletetask,
     posttask: posttask,
     getAlltasks: getAlltasks,
-    edittask: edittask
+    edittask: edittask,
+    getTasksForHunt: getTasksForHunt
 };

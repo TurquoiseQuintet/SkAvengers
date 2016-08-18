@@ -7,7 +7,6 @@ function hash(password) {
             if (err) {
                 reject(err);
             } else {
-              console.log(password, salt);
                 bcrypt.hash(password, salt, function(err, result) {
                     if (err) {
                         reject(err);
@@ -20,4 +19,5 @@ function hash(password) {
     });
 }
 
+hash('1111');
 module.exports = hash;
