@@ -52,5 +52,6 @@ module.exports = {
     deleteUser: deleteUser,
     editUser: editUser,
     getAllUsers: getAllUsers,
-    getUser: getUser
+    getUser: getUser,
+    getTasksForHunt: getTasksForHunt
 };
