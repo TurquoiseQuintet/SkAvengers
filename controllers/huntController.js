@@ -10,7 +10,7 @@ function createhunt(req, res){
   };
   knex('hunts').insert(insertObj).returning('id')
   .then(function(data){
-    res.status(200).json({id: data[0].id});
+    res.status(200).send(data);
   })
   .catch(function(err){
     res.status(500).json({err: err.message});
