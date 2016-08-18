@@ -35,34 +35,15 @@ app.use('/', root);
 // app.use('/users', users);
 // app.use('/hunts', hunts);
 // app.use('/tasks', tasks);
-<<<<<<< HEAD
 app.use('/submit', submit);
 app.use('/leaderboard', leaderboard);
-=======
-// app.use('/submit', submit);
->>>>>>> dev
 // app.use('/', expressJwt({secret:process.env.SECRET}));
 
 // app.use('/api', expressJwt({secret:process.env.SECRET}), api);
 
-<<<<<<< HEAD
 app.use('/users', expressJwt({secret:process.env.SECRET}), users);
 app.use('/hunts', expressJwt({secret:process.env.SECRET}), hunts);
 app.use('/tasks', expressJwt({secret:process.env.SECRET}), tasks );
-=======
-app.use('/users', expressJwt({
-    secret: process.env.SECRET
-}), users);
-app.use('/submit', expressJwt({
-    secret: process.env.SECRET
-}), submit);
-app.use('/hunts', expressJwt({
-    secret: process.env.SECRET
-}), hunts);
-app.use('/tasks', expressJwt({
-    secret: process.env.SECRET
-}), tasks);
->>>>>>> dev
 
 
 // catch 404 and forward to error handler
