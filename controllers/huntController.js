@@ -145,7 +145,7 @@ function editHunt (req, res){
     res.send(err);
   });
 }
-function UsersHungs(req, res){
+function UsersHunts(req, res){
   var insertArray =[];
   for(var i = 0; i < req.body.users.length; i++){
     insertArray.push({
