@@ -6,6 +6,8 @@ router.post('/', huntController.createhunt);
 
 router.get('/all', huntController.myHunts);
 
+router.post('/users', huntController.UsersHunts);
+
 router.get('/users/:hunt_id', huntController.HuntsUsers);
 
 router.get('/mine', huntController.master);

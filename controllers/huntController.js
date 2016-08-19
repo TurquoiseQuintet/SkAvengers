@@ -145,7 +145,23 @@ function editHunt (req, res){
     res.send(err);
   });
 }
-
+function UsersHungs(req, res){
+  var insertArray =[];
+  for(var i = 0; i < req.body.users.length; i++){
+    insertArray.push({
+      users_id: req.body.users[i],
+      hunts_id: req.params.hunt_id,
+      experience: 0
+    });
+  }
+  knex('hunts_users').insert(insertArray)
+  .then(function(data){
+    res.send(data);
+  })
+  .catch(function(err){
+    res.send(err);
+  });
+}
 module.exports={
   createhunt: createhunt,
   gethunt: gethunt,
@@ -154,5 +170,6 @@ module.exports={
   editHunt: editHunt,
   myHunts: myHunts,
   master: master,
-  HuntsUsers: HuntsUsers
+  HuntsUsers: HuntsUsers,
+  UsersHunts: UsersHunts
 };
