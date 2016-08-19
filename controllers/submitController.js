@@ -15,12 +15,12 @@ function submit(req, res) {
     return knex('users_tasks').where('users_id', req.params.user_id).where('tasks_id', req.params.task_id);
   })
   .then(function(data) {
-    console.log("call 2");
+    console.log("call 2", data);
     user_task = data[0];
     return knex('tasks').where('id', user_task.id);
   })
   .then(function(data) {
-    console.log("call 3");
+    console.log("call 3", data);
     task = data[0];
     return knex('users_tasks').where('users_id', req.params.user_id).where('tasks_id', task.id).update({completed: true});
   })
@@ -29,7 +29,7 @@ function submit(req, res) {
     return knex('hunts').where('id', task.hunt_id);
   })
   .then(function(data) {
-    console.log("call 5");
+    console.log("call 5", data);
     hunt = data[0];
     return knex('hunts_users').where('hunts_id', hunt.id).where('users_id', req.params.user_id);
   })
