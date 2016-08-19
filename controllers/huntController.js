@@ -20,7 +20,7 @@ function createhunt(req, res){
         experience: 0
       });
     }
-    return knex('hunts_id').insert(insertArray);
+    return knex('hunts_users').insert(insertArray);
   })
   .then(function(data){
     res.status(200).send(returningID);
