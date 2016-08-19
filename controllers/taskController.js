@@ -41,10 +41,10 @@ function posttask(req, res) {
       return knex('users_tasks').insert(insertArray);
     })
     .then(function(data){
-      res.send(insertArray);
+      res.send(data);
     })
     .catch(function(err){
-      res.send(insertArray);
+      res.send(err);
     });
 }
 
