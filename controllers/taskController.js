@@ -23,11 +23,11 @@ function gettask(req, res) {
 }
 
 function posttask(req, res) {
+  console.log(req.body);
     knex('tasks').insert({
         hunt_id: req.body.hunt_id,
         name: req.body.name,
         xp: req.body.xp,
-        level_available: req.body.level_available,
         unique: req.body.unique
     })
     .then(function(data){
