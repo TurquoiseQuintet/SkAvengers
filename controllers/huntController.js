@@ -148,6 +148,7 @@ function editHunt (req, res){
 function UsersHunts(req, res){
   console.log('USERSHUNTS');
   var insertArray =[];
+  var promiseArray =[];
   for(var i = 0; i < req.body.users.length; i++){
     insertArray.push({
       users_id: req.body.users[i],
@@ -156,6 +157,20 @@ function UsersHunts(req, res){
     });
   }
   knex('hunts_users').insert(insertArray)
+  .then(function(data){
+    return knex('tasks').where('tasks.hunt_id', req.params.hunt_id)
+  })
+  .then(function(data){
+    for(var i =0; i< data.length; i++){
+      for(var j = 0; j < req.body.users.length; j++){
+        promiseArray.push({
+          users_id: req.body.users[j],
+          tasks_id: data[i].id
+        });
+      }
+    }
+    return knex('users_tasks').insert(promiseArray);
+  })
   .then(function(data){
     res.send(data);
   })
