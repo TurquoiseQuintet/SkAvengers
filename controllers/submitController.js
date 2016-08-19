@@ -15,31 +15,37 @@ function submit(req, res) {
     return knex('users_tasks').where('users_id', req.params.user_id).where('tasks_id', req.params.task_id);
   })
   .then(function(data) {
+    console.log("call 2", data);
     user_task = data[0];
     return knex('tasks').where('id', user_task.tasks_id);
   })
   .then(function(data) {
+    console.log("call 3", data);
     task = data[0];
     return knex('users_tasks').where('users_id', req.params.user_id).where('tasks_id', task.id).update({completed: true});
   })
   .then(function() {
+    console.log("call 4");
     return knex('hunts').where('id', task.hunt_id);
   })
   .then(function(data) {
+    console.log("call 5", data);
     hunt = data[0];
     return knex('hunts_users').where('hunts_id', data[0].id).where('users_id', req.params.user_id);
   })
   .then(function(data) {
+    console.log("call 6", data);
     hunt_user = data[0];
     return knex('hunts_users').where('hunts_id', data[0].id).where('users_id', req.params.user_id).update({experience: (parseInt(data[0].experience) + parseInt(task.xp))});
   })
   .then(function() {
+    console.log("call 7");
     if (task.unique) {
       return knex('users_tasks').where('tasks_id', task.id).update('completed', true);
     }
   })
   .then(function() {
-    res.send('complete');
+    res.send('complete')
   })
   .catch(function(err) {
     console.log(err);
