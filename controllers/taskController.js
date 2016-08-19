@@ -33,7 +33,7 @@ function posttask(req, res) {
     .then(function(data){
       for(var i = 0; i < data.length; i++){
         insertArray.push({
-          users_id: data[i].users_id,
+          users_id: data[i].users_id[0],
           tasks_id: id,
           completed: false
         });
