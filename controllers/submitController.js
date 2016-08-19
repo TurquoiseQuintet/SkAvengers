@@ -17,7 +17,7 @@ function submit(req, res) {
   .then(function(data) {
     console.log("call 2", data);
     user_task = data[0];
-    return knex('tasks').where('id', user_task.id);
+    return knex('tasks').where('id', data[0].tasks_id);
   })
   .then(function(data) {
     console.log("call 3", data);
