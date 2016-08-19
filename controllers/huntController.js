@@ -91,7 +91,7 @@ function myHunts(req, res) {
   .then(function(data) {
     var idarray = [];
     for (var i = 0; i < data.length; i++) {
-      idarray.push(data[i].id);
+      idarray.push(data[i].hunts_id);
     }
     return knex('hunts').whereIn('id', idarray);
   })
