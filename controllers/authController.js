@@ -8,11 +8,11 @@ function addUser(req, res, next) {
     hash(req.body.password)
         .then(function(result) {
             return knex('users').insert({
-                username: req.body.username,
+                username: req.body.username.toLowerCase(),
                 email: req.body.email,
                 hash: result,
                 avatar: req.body.avatar,
-                phone_number: req.body.phone_number
+                phone_number: req.body.phone_number.replace(/[\(\)\.\-\ \+\x]/g, '')
             }).returning('*')
         })
         .then(function(data) {
@@ -38,7 +38,7 @@ function addUser(req, res, next) {
 
 function checklogin (req, res, next){
   knex('users')
-  .where('username', req.body.username)
+  .where('username', req.body.username.toLowerCase())
   .then(function(data){
     bcrypt.compare(req.body.password, data[0].hash, function(err, result){
       if(result){
