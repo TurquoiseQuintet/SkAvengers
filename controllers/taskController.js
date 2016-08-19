@@ -17,12 +17,28 @@ function gettask(req, res) {
 }
 
 function posttask(req, res) {
+  var insertArray = [];
+  var id;
     knex('tasks').insert({
         hunt_id: req.body.hunt_id,
         name: req.body.name,
         xp: req.body.xp,
         level_available: req.body.level_available,
         unique: req.body.unique
+    }).returning('id')
+    .then(function(data){
+      id = data[0];
+      return knex('hunts_users').where('hunts_id', req.body.hunt_id);
+    })
+    .then(function(data){
+      for(var i = 0; i < data.length; i++){
+        insertArray.push({
+          users_id: data[i].users_id,
+          tasks_id: id,
+          completed: false
+        });
+      }
+      return knex('users_tasks').insert(insertArray);
     })
     .then(function(data){
       res.send(data);

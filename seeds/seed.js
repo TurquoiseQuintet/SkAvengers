@@ -138,7 +138,51 @@ exports.seed = function(knex, Promise) {
           users_id: 3,
           tasks_id: 7,
           completed: false
-        })
+        }),
+
+        knex('users_tasks').insert({
+          id: 4,
+          users_id: 1,
+          tasks_id: 2,
+          completed: false
+        }),
+
+        knex('users_tasks').insert({
+          id: 5,
+          users_id: 1,
+          tasks_id: 3,
+          completed: false
+        }),
+
+        knex('users_tasks').insert({
+          id: 6,
+          users_id: 2,
+          tasks_id: 5,
+          completed: false
+        }),
+
+        knex('users_tasks').insert({
+          id: 7,
+          users_id: 2,
+          tasks_id: 6,
+          completed: false
+        }),
+
+        knex('users_tasks').insert({
+          id: 8,
+          users_id: 3,
+          tasks_id: 8,
+          completed: false
+        }),
+
+        knex('users_tasks').insert({
+          id: 9,
+          users_id: 3,
+          tasks_id: 9,
+          completed: false
+        }),
+
+
       ])
     .then(function(){
 
