@@ -108,7 +108,7 @@ function getTasksForHuntForUser(req, res){
   var number;
   var hunt;
   var experience;
-  knex('tasks').join('users_tasks', 'users_tasks.tasks_id', '=', 'tasks.id').where('hunt_id', req.params.hunt_id)
+  knex('tasks').join('users_tasks', 'users_tasks.tasks_id', '=', 'tasks.id').where('hunt_id', req.params.hunt_id).where('users_id', req.user.id)
   .then(function(data){
     tasks = data;
     hunt = data[0].hunt_id;
