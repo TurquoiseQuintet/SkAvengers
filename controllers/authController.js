@@ -22,6 +22,7 @@ function addUser(req, res, next) {
               email: data[0].email,
               avatar: data[0].avatar
           };
+          console.log(profile);
           var token = jwt.sign(profile, process.env.SECRET, {expiresIn: 432000});
           res.status(200).json({
               token: token
