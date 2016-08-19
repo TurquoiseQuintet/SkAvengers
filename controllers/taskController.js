@@ -25,6 +25,7 @@ function gettask(req, res) {
 function posttask(req, res) {
   var insertArray = [];
   var id;
+  console.log(req.body);
     knex('tasks').insert({
         hunt_id: req.body.hunt_id,
         name: req.body.name,
@@ -33,10 +34,12 @@ function posttask(req, res) {
         unique: req.body.unique
     }).returning('id')
     .then(function(data){
+      console.log(data);
       id = data[0];
       return knex('hunts_users').where('hunts_id', req.body.hunt_id);
     })
     .then(function(data){
+      console.log(data);
       for(var i = 0; i < data.length; i++){
         insertArray.push({
           users_id: data[i].users_id,
@@ -47,6 +50,7 @@ function posttask(req, res) {
       return knex('users_tasks').insert(insertArray);
     })
     .then(function(data){
+      console.log(data);
       res.send(data);
     })
     .catch(function(err){
