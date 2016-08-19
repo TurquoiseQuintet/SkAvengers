@@ -15,12 +15,13 @@ function addUser(req, res, next) {
             });
         })
         .then(function(data) {
-          var profile = {
-              data:data.id,
-              username: data.username,
-              email: data.email,
-              avatar: data.avatar
-          };
+          console.log(data[0]);
+          var profile= {
+            username: data[0].username,
+            id: data[0].id,
+            email:data[0].email,
+            avatar:data[0].avatar
+        };
           var token = jwt.sign(profile, process.env.SECRET, {expiresIn: 432000});
           res.status(200).json({
               token: token
