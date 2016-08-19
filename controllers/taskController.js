@@ -24,8 +24,11 @@ function gettask(req, res) {
 
 function posttask(req, res) {
 <<<<<<< HEAD
+<<<<<<< HEAD
   var insertArray = [];
   var id;
+=======
+>>>>>>> parent of b284baf... post tasks
 =======
 >>>>>>> parent of b284baf... post tasks
     knex('tasks').insert({
