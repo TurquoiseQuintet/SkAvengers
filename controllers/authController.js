@@ -11,7 +11,8 @@ function addUser(req, res, next) {
                 username: req.body.username,
                 email: req.body.email,
                 hash: result,
-                avatar: req.body.avatar
+                avatar: req.body.avatar,
+                phone_number: req.body.phone_number
             }).returning('*')
         })
         .then(function(data) {
@@ -20,7 +21,8 @@ function addUser(req, res, next) {
               id: data[0].id,
               username: data[0].username,
               email: data[0].email,
-              avatar: data[0].avatar
+              avatar: data[0].avatar,
+              phone_number: req.body.phone_number
           };
           console.log(profile);
           var token = jwt.sign(profile, process.env.SECRET, {expiresIn: 432000});
