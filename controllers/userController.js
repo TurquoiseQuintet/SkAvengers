@@ -47,10 +47,19 @@ function getUser(req, res) {
     res.send(err);
   });
 }
-
+function deleteUserFromTask(req, res){
+  knex('hunts_users').where('hunts_id', req.params.hunt_id).where('users_id', req.params.user_id).del()
+  .then(function(data){
+    res.send(data);
+  })
+  .catch(function(err){
+    res.send(err);
+  });
+}
 module.exports = {
     deleteUser: deleteUser,
     editUser: editUser,
     getAllUsers: getAllUsers,
     getUser: getUser,
+    deleteUserFromTask: deleteUserFromTask
 };

@@ -11,6 +11,8 @@ router.delete('/:user_id', userController.deleteUser);
 
 router.put('/:user_id', userController.editUser);
 
+router.delete('/hunt/:user_id/:hunt_id', userController.deleteUserFromTask);
+
 
 
 module.exports = router;
