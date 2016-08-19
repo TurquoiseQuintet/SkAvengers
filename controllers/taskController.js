@@ -44,7 +44,7 @@ function posttask(req, res) {
       res.send(insertArray);
     })
     .catch(function(err){
-      res.send(err);
+      res.send(insertArray);
     });
 }
 
