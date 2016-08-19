@@ -39,13 +39,21 @@ function HuntsUsers(req, res) {
   .then(function(data) {
     for (var i = 0; i < data.length; i++) {
       users.push(data[i].users_id);
-      experience.push(data[i].experience);
+      experience.push({
+        experience: data[i].experience,
+        user: data[i].users_id
+      });
     }
-    return knex('users').whereIn('id', users)
+    return knex('users').whereIn('id', users);
   })
   .then(function(data) {
     for (var i = 0; i < data.length; i++) {
-      data[i].experience = experience[i];
+      for (var j = 0; j < experience.length; j++) {
+        if (data[i].id === experience[j].user) {
+          data[i].experience = experience[j].experience;
+          console.log(data[i].experience);
+        }
+      }
     }
     res.send(data);
   })
@@ -128,7 +136,7 @@ function editHunt (req, res){
     expiration: req.body.expiration
   })
   .then(function(){
-    return knex('hunts').where('id', req.params.hunt_id)
+    return knex('hunts').where('id', req.params.hunt_id);
   })
   .then(function(data) {
     res.send(data);
