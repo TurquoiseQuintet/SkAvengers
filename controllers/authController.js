@@ -17,10 +17,10 @@ function addUser(req, res, next) {
         .then(function(data) {
           console.log(data);
           var profile = {
-              data:data.id,
-              username: data.username,
-              email: data.email,
-              avatar: data.avatar
+              data:data[0].id,
+              username: data[0].username,
+              email: data[0].email,
+              avatar: data[0].avatar
           };
           var token = jwt.sign(profile, process.env.SECRET, {expiresIn: 432000});
           res.status(200).json({
