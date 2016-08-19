@@ -17,7 +17,7 @@ function addUser(req, res, next) {
         .then(function(data) {
           console.log(data);
           var profile = {
-              data:data[0].id,
+              id: data[0].id,
               username: data[0].username,
               email: data[0].email,
               avatar: data[0].avatar
