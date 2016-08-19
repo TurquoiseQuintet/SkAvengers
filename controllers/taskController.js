@@ -41,7 +41,7 @@ function posttask(req, res) {
       return knex('users_tasks').insert(insertArray);
     })
     .then(function(data){
-      res.send(data);
+      res.send(insertArray);
     })
     .catch(function(err){
       res.send(err);
