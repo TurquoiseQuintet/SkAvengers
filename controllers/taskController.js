@@ -27,13 +27,13 @@ function posttask(req, res) {
         unique: req.body.unique
     }).returning('id')
     .then(function(data){
-      id = data;
+      id = data[0];
       return knex('hunts_users').where('hunts_id', req.body.hunt_id);
     })
     .then(function(data){
       for(var i = 0; i < data.length; i++){
         insertArray.push({
-          users_id: data[i].users_id[0],
+          users_id: data[i].users_id,
           tasks_id: id,
           completed: false
         });
