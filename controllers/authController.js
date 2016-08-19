@@ -12,9 +12,10 @@ function addUser(req, res, next) {
                 email: req.body.email,
                 hash: result,
                 avatar: req.body.avatar
-            });
+            }).returning('*')
         })
         .then(function(data) {
+          console.log(data);
           var profile = {
               data:data.id,
               username: data.username,
