@@ -36,10 +36,10 @@ function submit(req, res) {
   .then(function(data) {
     console.log("call 6", hunt);
     hunt_user = data[0];
-    return knex('hunts_users').where('hunts_id', hunt.id).where('users_id', req.params.user_id).update({experience: (parseInt(data[0].experience) + parseInt(task.xp))});
+    return knex('hunts_users').where('hunts_id', hunt.id).where('users_id', req.params.user_id).update({experience: (parseInt(data[0].experience) + parseInt(task.xp))}).returning('*');
   })
-  .then(function() {
-    console.log("call 7");
+  .then(function(data) {
+    console.log("call 7", data);
     if (task.unique) {
       return knex('users_tasks').where('tasks_id', task.id).update('completed', true);
     }
