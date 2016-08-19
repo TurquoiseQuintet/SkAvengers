@@ -45,7 +45,7 @@ function submit(req, res) {
     }
   })
   .then(function() {
-    console.log("complete");
+    res.send('complete');
   })
   .catch(function(err) {
     console.log(err);
