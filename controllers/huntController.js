@@ -13,10 +13,10 @@ function createhunt(req, res){
   .then(function(id){
     returningID = id;
     var insertArray =[];
-    for(var i = 0; i < req.body.users; i++){
+    for(var i = 0; i < req.body.users.length; i++){
       insertArray.push({
-        hunts_id: id,
-        users_id: req.body.users[i],
+        hunts_id: parseInt(id),
+        users_id: parseInt(req.body.users[i]),
         experience: 0
       });
     }
